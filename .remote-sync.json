@@ -2,10 +2,9 @@
   "logger": {
     "title": "Remote Sync"
   },
-  "uploadOnSave": true,
+  "uploadOnSave": false,
   "useAtomicWrites": false,
   "deleteLocal": true,
-  "hostname": "10.2.6.149",
   "port": "22",
   "target": "vxlan-evpn",
   "ignore": [
