@@ -1,0 +1,5 @@
+---
+- hosts: leafs
+  connection: local
+  roles:
+    - jinja2_leaf
