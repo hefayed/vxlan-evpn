@@ -1,5 +1,5 @@
 ---
 - hosts: jinja2_leaf
-  connection: local
+  connection: remote
   roles:
   - jinja2_leaf
