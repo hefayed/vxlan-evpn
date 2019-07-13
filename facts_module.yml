@@ -1,0 +1,19 @@
+---
+#Task 1: create vlans on leaf switches
+
+  - hosts: leafs
+    vars:
+      nxos_provider:
+        username: "{{ user }}"
+        password: "{{ pwd }}"
+        transport: cli
+        host: "{{ hostvars[inventory_hostname].ansible_host }}"
+
+    tasks:
+
+      - name: GATHER FACTS FOR Leaf "{{ inventory_hostname }}"
+        nxos_facts:
+          provider: "{{ nxos_provider }}"
+        register: facts_module
+
+      - debug: var=facts_module
