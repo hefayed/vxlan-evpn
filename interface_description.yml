@@ -29,3 +29,4 @@
           name: "{{ item }}"
           description: 'Connected-to-{{ ansible_net_neighbors[item][0]["port"] }}-{{ ansible_net_neighbors[item][0]["sysname"] }} '
         with_items: "{{ interfaces}}"
+        when: ansible_net_neighbors[item][0]["sysname"] is search("Spine")
