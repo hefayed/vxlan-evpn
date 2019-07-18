@@ -1,5 +1,5 @@
 ---
-- hosts: jinja2_leaf
+- hosts: leafs
   connection: local
   roles:
-  - jinja2_leaf
+  - leaf_underlay
