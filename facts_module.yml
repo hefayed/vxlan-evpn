@@ -17,3 +17,8 @@
         register: facts_module
 
       - debug: var=facts_module
+
+      - name: switch ports qty
+        set_fact:
+          ports: "{{ module[0].ports }}"
+      - debug: var=ports
