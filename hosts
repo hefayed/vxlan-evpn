@@ -15,9 +15,9 @@ pwd=C1sc0123!
 gather_fact=no
 
 [leafs]
-leaf103 ansible_host=10.2.6.147 lo0_ipaddr=100.64.0.103 lo1_ipaddr=100.64.1.103
-leaf101 ansible_host=10.2.6.146 lo0_ipaddr=100.64.0.101 lo1_ipaddr=100.64.1.101
-leaf102 ansible_host=10.2.6.145 lo0_ipaddr=100.64.0.102 lo1_ipaddr=100.64.1.102
+leaf103 ansible_host=10.2.6.147 lo0_ipaddr=100.64.0.103 lo1_ipaddr=100.64.1.103 hostname=leaf103
+leaf101 ansible_host=10.2.6.146 lo0_ipaddr=100.64.0.101 lo1_ipaddr=100.64.1.101 hostname=leaf101
+leaf102 ansible_host=10.2.6.145 lo0_ipaddr=100.64.0.102 lo1_ipaddr=100.64.1.102 hostname=leaf102
 
 [spines]
 spine201 ansible_host=10.2.6.144 lo0_ipaddr=100.64.0.201 lo1_ipaddr=100.64.1.201
