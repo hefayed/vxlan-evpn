@@ -8,11 +8,13 @@ feature ngoam
 !
 fabric forwarding anycast-gateway-mac 0000.2222.3333
 !
+hostname {{ hostvars[inventory_hostname]['hostname'] }}
+!
 interface nve1
  no shutdown
  source-interface loopback1
  host-reachability protocol bgp
-
+!
 interface loopback0
   description Routing loopback interface
   ip address {{ hostvars[inventory_hostname]['lo0_ipaddr'] }}/32
