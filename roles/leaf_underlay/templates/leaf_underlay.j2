@@ -19,7 +19,7 @@ interface loopback0
   description Routing loopback interface
   ip address {{ hostvars[inventory_hostname]['lo0_ipaddr'] }}/32
   ip router ospf UNDERLAY area 0.0.0.0
-
+!
 interface loopback1
   description VTEP loopback interface
   ip address {{ hostvars[inventory_hostname]['lo1_ipaddr'] }}/32
