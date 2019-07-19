@@ -1,10 +1,10 @@
 ---
 #Task 1: Configure uplinks to spines
-  - hosts: leafs
+  - hosts: spines
     any_errors_fatal: yes
     vars_prompt:
         name: "confirmation"
-        prompt: "Did you execute the leaf_underlay playbook? Answer 'Yes' or 'No' "
+        prompt: "Did you execute the spine_underlay playbook? Answer 'Yes' or 'No' "
         default: "No"
         private: no
 
@@ -21,7 +21,7 @@
         fail: msg="Playbook run confirmation failed"
         when: confirmation != "Yes"
 
-      - name: GATHER FACTS FOR Leaf "{{ inventory_hostname }}"
+      - name: GATHER FACTS FOR SPINE "{{ inventory_hostname }}"
         nxos_facts:
           provider: "{{ nxos_provider }}"
 
@@ -33,7 +33,7 @@
       - debug: var=interfaces
 
 
-      - name: Configure uplink interfaces to spines
+      - name: Configure uplink interfaces to leafs
         nxos_config:
           provider: "{{ nxos_provider }}"
           lines:
@@ -47,7 +47,7 @@
           parents: interface {{ item }}
           match: none
         with_items: "{{ interfaces }}"
-        when: ansible_net_neighbors[item][0]["sysname"] is search("Spine")
+        when: ansible_net_neighbors[item][0]["sysname"] is search("leaf")
 
       - name: Ensure an interface has the proper description
         nxos_interface:
@@ -55,4 +55,4 @@
           name: "{{ item }}"
           description: 'Connected-to-{{ ansible_net_neighbors[item][0]["port"] }}-{{ ansible_net_neighbors[item][0]["sysname"] }} '
         with_items: "{{ interfaces}}"
-        when: ansible_net_neighbors[item][0]["sysname"] is search("Spine")
+        when: ansible_net_neighbors[item][0]["sysname"] is search("leaf")
