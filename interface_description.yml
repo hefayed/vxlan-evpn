@@ -1,6 +1,5 @@
 ---
-#Task 1: create vlans on leaf switches
-
+#Task 1: Configure uplinks to spines
   - hosts: leafs
     any_errors_fatal: yes
     vars_prompt:
