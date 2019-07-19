@@ -20,5 +20,5 @@ leaf101 ansible_host=10.2.6.146 lo0_ipaddr=100.64.0.101 lo1_ipaddr=100.64.1.101 
 leaf102 ansible_host=10.2.6.145 lo0_ipaddr=100.64.0.102 lo1_ipaddr=100.64.1.102 hostname=leaf102
 
 [spines]
-spine201 ansible_host=10.2.6.144 lo0_ipaddr=100.64.0.201 lo1_ipaddr=100.64.1.201
-spine202 ansible_host=10.2.6.143 lo0_ipaddr=100.64.0.202 lo1_ipaddr=100.64.1.202
+spine201 ansible_host=10.2.6.144 lo0_ipaddr=100.64.0.201 lo1_ipaddr=100.64.1.201 hostname=spine201
+spine202 ansible_host=10.2.6.143 lo0_ipaddr=100.64.0.202 lo1_ipaddr=100.64.1.202 hostname=spine202
