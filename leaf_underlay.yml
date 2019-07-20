@@ -1,4 +1,5 @@
 ---
+#Task 1: Build the Underlay for all Leafs
 - hosts: leafs
   connection: local
   roles:
@@ -19,13 +20,13 @@
 
     - debug: var=ansible_net_neighbors
 
-    - name: create interface keys
+    - name: CREATE INTERFACE KEYS BASED ON CDP INFORMATION
       set_fact:
         interfaces: "{{ ansible_net_neighbors.keys() }}"
     - debug: var=interfaces
 
 
-    - name: Configure uplink interfaces to spines
+    - name: CONFIGURE UPLINK INTERFACES TO SPINES
       nxos_config:
         provider: "{{ nxos_provider }}"
         lines:
@@ -41,7 +42,7 @@
       with_items: "{{ interfaces }}"
       when: ansible_net_neighbors[item][0]["sysname"] is search("Spine")
 
-    - name: Ensure an interface has the proper description
+    - name: CONFIGURE PROPER DISCRIPTION FOR UPLINKS TO LEAFS BASED ON CDP INFORMATION
       nxos_interface:
         provider: "{{ nxos_provider }}"
         name: "{{ item }}"
