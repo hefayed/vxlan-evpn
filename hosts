@@ -1,0 +1,24 @@
+# This is the default ansible 'hosts' file.
+#
+# It should live in /etc/ansible/hosts
+#
+#   - Comments begin with the '#' character
+#   - Blank lines are ignored
+#   - Groups of hosts are delimited by [header] elements
+#   - You can enter hostnames or ip addresses
+#   - A hostname/ip can be a member of multiple groups
+
+[all:vars]
+ansible_connection=local
+user=admin
+pwd=C1sc0123!
+gather_fact=no
+
+[leafs]
+leaf103 ansible_host=10.2.6.147 lo0_ipaddr=100.64.0.103 lo1_ipaddr=100.64.1.103 hostname=leaf103
+leaf101 ansible_host=10.2.6.146 lo0_ipaddr=100.64.0.101 lo1_ipaddr=100.64.1.101 hostname=leaf101
+leaf102 ansible_host=10.2.6.145 lo0_ipaddr=100.64.0.102 lo1_ipaddr=100.64.1.102 hostname=leaf102
+
+[spines]
+spine201 ansible_host=10.2.6.144 lo0_ipaddr=100.64.0.201 lo1_ipaddr=100.64.1.201 hostname=spine201
+spine202 ansible_host=10.2.6.143 lo0_ipaddr=100.64.0.202 lo1_ipaddr=100.64.1.202 hostname=spine202
