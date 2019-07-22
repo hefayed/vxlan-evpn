@@ -1,9 +1,0 @@
----
-# tasks file for jinja2_leaf
-- name: Generate Leaf Config
-  template: src=leaf.j2 dest=roles/jinja2_leaf/files/{{inventory_hostname}}.cfg
-- name: Push Leaf Config
-  nxos_config:
-    src: roles/jinja2_leaf/files/{{inventory_hostname}}.cfg
-    force: yes
-    provider: "{{ nxos_provider }}"
