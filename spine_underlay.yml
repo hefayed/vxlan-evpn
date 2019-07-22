@@ -3,7 +3,7 @@
 - hosts: leafs
   connection: local
   roles:
-  - leaf_underlay
+  - spine_underlay
 
   vars:
     nxos_provider:
