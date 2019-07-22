@@ -26,7 +26,7 @@
     - debug: var=interfaces
 
 
-    - name: CONFIGURE UPLINK INTERFACES TO SPINES
+    - name: CONFIGURE UPLINK INTERFACES TO LEAFS
       nxos_config:
         provider: "{{ nxos_provider }}"
         lines:
