@@ -1,0 +1,36 @@
+---
+#Task Creation of L2VNI on leafs
+- hosts: leafs
+  vars:
+    nxos_provider:
+      username: "{{ user }}"
+      password: "{{ pwd }}"
+      transport: cli
+      host: "{{ hostvars[inventory_hostname].ansible_host }}"
+
+  tasks:
+
+    - name: GATHER FACTS FOR Leaf "{{ inventory_hostname }}"
+      nxos_facts:
+        provider: "{{ nxos_provider }}"
+
+    - name: create interface keys
+      set_fact:
+        interfaces: "{{ ansible_net_neighbors.keys() }}"
+    - debug: var=interfaces
+
+    - name: CREATE VLANS
+      nxos_vlan:
+        vlan_id: "{{ item }}"
+        provider: "{{ nxos_provider }}"
+      with_items:
+      - 2
+      - 5
+      - 10
+
+    - name: CREATE VLAN RANGE
+      nxos_vlan:
+        vlan_range: "{{ item }}"
+        provider: "{{ nxos_provider }}"
+      with_items:
+      - 200-250
