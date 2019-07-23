@@ -1,5 +1,5 @@
 ---
-# tasks file for jinja2_leaf
+# tasks to build leaf underlay
 - name: Generate Leaf Config
   template: src=leaf_underlay.j2 dest=roles/leaf_underlay/files/{{inventory_hostname}}.cfg
 

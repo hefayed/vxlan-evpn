@@ -1,2 +1,12 @@
 ---
-# vars file for spine_underlay
+# vars file for jinja2_leaf
+  nxos_provider:
+    username: "{{ user }}"
+    password: "{{ pwd }}"
+    timeout: 100
+    host: "{{ hostvars[inventory_hostname].ansible_host }}"
+
+  asn: 65000
+
+  bgp_neighbors:
+    - neighbor: 100.64.0.0/24
