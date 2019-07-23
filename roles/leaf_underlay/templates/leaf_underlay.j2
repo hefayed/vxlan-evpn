@@ -14,6 +14,9 @@ interface nve1
   no shutdown
   source-interface loopback1
   host-reachability protocol bgp
+  member vni {{ vni.low }}-{{ vni.high }}
+    ingress-replication protocol bgp
+
 
 !
 interface loopback0
