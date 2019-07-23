@@ -2,8 +2,45 @@
 # tasks file for jinja2_leaf
 - name: Generate Leaf Config
   template: src=leaf_underlay.j2 dest=roles/leaf_underlay/files/{{inventory_hostname}}.cfg
+
 - name: Push Leaf Config
   nxos_config:
     src: roles/leaf_underlay/files/{{inventory_hostname}}.cfg
-    force: yes
+    match: none
     provider: "{{ nxos_provider }}"
+
+- name: GATHER FACTS FOR Leaf "{{ inventory_hostname }}"
+  nxos_facts:
+    provider: "{{ nxos_provider }}"
+
+- debug: var=ansible_net_neighbors
+
+- name: create interface keys
+  set_fact:
+    interfaces: "{{ ansible_net_neighbors.keys() }}"
+- debug: var=interfaces
+
+
+- name: Configure uplink interfaces to spines
+  nxos_config:
+    provider: "{{ nxos_provider }}"
+    lines:
+      - no switchport
+      - mtu 9216
+      - medium p2p
+      - ip unnumbered loopback0
+      - ip ospf network point-to-point
+      - ip router ospf UNDERLAY area 0.0.0.0
+      - no shutdown
+    parents: interface {{ item }}
+    match: none
+  with_items: "{{ interfaces }}"
+  when: ansible_net_neighbors[item][0]["sysname"] is search("Spine")
+
+- name: Ensure an interface has the proper description
+  nxos_interface:
+    provider: "{{ nxos_provider }}"
+    name: "{{ item }}"
+    description: 'Connected-to-{{ ansible_net_neighbors[item][0]["port"] }}-{{ ansible_net_neighbors[item][0]["sysname"] }} '
+  with_items: "{{ interfaces}}"
+  when: ansible_net_neighbors[item][0]["sysname"] is search("Spine")
