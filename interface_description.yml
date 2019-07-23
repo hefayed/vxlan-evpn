@@ -1,6 +1,6 @@
 ---
 #Task 1: Configure uplinks to spines
-  - hosts: leafs
+  - hosts: all
     vars:
       nxos_provider:
         username: "{{ user }}"
