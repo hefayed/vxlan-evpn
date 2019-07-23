@@ -13,3 +13,7 @@
   bgp_neighbors:
     - neighbor: 100.64.0.201
     - neighbor: 100.64.0.202
+
+  vni:
+     low: 33100
+     high: 33200
