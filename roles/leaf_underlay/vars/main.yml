@@ -8,8 +8,6 @@
 
   asn: 65000
 
-  router_id: 100.64.0.100
-
   bgp_neighbors:
     - neighbor: 100.64.0.201
     - neighbor: 100.64.0.202
