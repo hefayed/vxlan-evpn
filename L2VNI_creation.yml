@@ -1,6 +1,6 @@
 ---
 #Task Creation of L2VNI on leafs
-- hosts: leafs
+- hosts: leaf
   vars:
     nxos_provider:
       username: "{{ user }}"
