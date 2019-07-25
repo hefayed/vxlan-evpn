@@ -14,23 +14,5 @@
       nxos_facts:
         provider: "{{ nxos_provider }}"
 
-    - name: create interface keys
-      set_fact:
-        interfaces: "{{ ansible_net_neighbors.keys() }}"
-    - debug: var=interfaces
-
-    - name: CREATE VLANS
-      nxos_vlan:
-        vlan_id: "{{ item }}"
-        provider: "{{ nxos_provider }}"
-      with_items:
-      - 2
-      - 5
-      - 10
-
-    - name: CREATE VLAN RANGE
-      nxos_vlan:
-        vlan_range: "{{ item }}"
-        provider: "{{ nxos_provider }}"
-      with_items:
-      - 200-250
+    - name: parse csv and make vars file
+      command: "python csv_to_yml.py"
