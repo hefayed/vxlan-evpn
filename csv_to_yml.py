@@ -3,7 +3,7 @@ import csv
 import yaml
 
 l2vni_data = []
-with open('l2vni_vars.csv', mode='r') as csvfile:
+with open('/home/contiv/vxlan-evpn/l2vni_vars.csv', mode='r') as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         l2vni_data.append(row['vlan_id'])
@@ -11,6 +11,6 @@ with open('l2vni_vars.csv', mode='r') as csvfile:
 
 l2vni_vars = list(map(int, l2vni_data))
 
-with open('./roles/l2vni_overlay/vars/main.yml', 'w+') as outfile:
-    outfile.write('---\n')
-    outfile.write(yaml.dump({'L2VNI': l2vni_vars}, default_flow_style=False))
+with open('/home/contiv/vxlan-evpn/roles/l2vni_overlay/vars/main.yml', 'a') as outfile:
+    # outfile.write('---\n')
+    outfile.write(yaml.dump({'vlan_id': l2vni_vars}, default_flow_style=False))

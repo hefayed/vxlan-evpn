@@ -1,0 +1,7 @@
+
+
+{% for vlan in vlan_id %}
+vlan {{ vlan }}
+  name l2-vni-BD{{ vlan }}
+  vn-segment 33{{ vlan}}
+{% endfor %}

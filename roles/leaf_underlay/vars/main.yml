@@ -1,5 +1,5 @@
 ---
-# vars file for jinja2_leaf
+# vars file for leaf_underlay
   nxos_provider:
     username: "{{ user }}"
     password: "{{ pwd }}"
