@@ -1,2 +1,7 @@
 ---
-# vars file for l2vni_overlay
+L2VNI:
+- 101
+- 102
+- 103
+- 104
+- 105

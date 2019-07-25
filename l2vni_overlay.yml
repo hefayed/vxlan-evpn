@@ -1,18 +1,6 @@
 ---
 #Task Creation of L2VNI on leafs
 - hosts: leafs
-  vars:
-    nxos_provider:
-      username: "{{ user }}"
-      password: "{{ pwd }}"
-      transport: cli
-      host: "{{ hostvars[inventory_hostname].ansible_host }}"
-
-  tasks:
-
-    - name: GATHER FACTS FOR Leaf "{{ inventory_hostname }}"
-      nxos_facts:
-        provider: "{{ nxos_provider }}"
-
-    - name: parse csv and make vars file
-      command: "python csv_to_yml.py"
+  connection: local
+  roles:
+  - l2vni_overlay
