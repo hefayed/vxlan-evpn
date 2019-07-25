@@ -1,2 +1,20 @@
 ---
 # tasks file for l2vni_overlay
+
+
+    - name: GATHER FACTS FOR Leaf "{{ inventory_hostname }}"
+      nxos_facts:
+        provider: "{{ nxos_provider }}"
+
+    - name: parse csv and make vars file
+      command: "python csv_to_yml.py"
+
+
+    - name: Generate Leaf Config
+      template: src=l2vni_overlay.j2 dest=roles/l2vni_overlay/files/{{inventory_hostname}}.cfg
+
+    - name: Push Leaf Config
+      nxos_config:
+        src: roles/l2vni_overlay/files/{{inventory_hostname}}.cfg
+        match: none
+        provider: "{{ nxos_provider }}"
