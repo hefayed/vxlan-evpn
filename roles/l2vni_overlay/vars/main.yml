@@ -7,7 +7,6 @@ nxos_provider:
   host: '{{ hostvars[inventory_hostname].ansible_host }}'
 
   #list of VLAN IDs
-vlan_id: []
-vlan_idI:
-- 101
-- 102
+vlan_id:
+- 111
+- 112

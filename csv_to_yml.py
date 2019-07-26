@@ -19,7 +19,7 @@ l2vni_vars = list(map(int, l2vni_data))
 with open(my_vars_file) as data:
     data_loaded = ruamel.yaml.round_trip_load(data)
     del data_loaded['vlan_id'][:]
-    data_loaded['vlan_idI'] = l2vni_vars
+    data_loaded['vlan_id'] = l2vni_vars
     ruamel.yaml.round_trip_dump(data_loaded, sys.stdout, block_seq_indent=1)
 
 with open(my_vars_file, "w") as file:
