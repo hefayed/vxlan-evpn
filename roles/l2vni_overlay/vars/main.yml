@@ -1,16 +1,13 @@
 ---
 
 nxos_provider:
-  username: "{{ user }}"
-  password: "{{ pwd }}"
+  username: '{{ user }}'
+  password: '{{ pwd }}'
   timeout: 100
-  host: "{{ hostvars[inventory_hostname].ansible_host }}"
+  host: '{{ hostvars[inventory_hostname].ansible_host }}'
 
   #list of VLAN IDs
-vlan_id:
+vlan_id: []
+vlan_idI:
 - 101
 - 102
-- 103
-- 104
-- 105
-- 106
