@@ -4,6 +4,9 @@
     - name: parse csv and make vars file
       command: "python /home/contiv/vxlan-evpn/csv_to_yml.py"
 
+    - name: sleep for 60 seconds and continue with play
+      wait_for:
+        timeout: 60
 
     - name: Generate Leaf Config
       template: src=l2vni_overlay.j2 dest=roles/l2vni_overlay/files/{{inventory_hostname}}.cfg

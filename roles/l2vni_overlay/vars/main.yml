@@ -1,12 +1,8 @@
 ---
-
 nxos_provider:
   username: '{{ user }}'
   password: '{{ pwd }}'
   timeout: 100
   host: '{{ hostvars[inventory_hostname].ansible_host }}'
 
-  #list of VLAN IDs
-vlan_id:
-- 111
-- 112
+# vars for creation of l2vni and vlan interface configuration

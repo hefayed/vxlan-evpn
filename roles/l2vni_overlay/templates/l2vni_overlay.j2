@@ -1,7 +1,7 @@
 
 
-{% for vlan in vlan_id %}
-vlan {{ vlan }}
-  name l2-vni-BD{{ vlan }}
-  vn-segment 33{{ vlan}}
+{% for id in l2vni %}
+vlan {{ id['vlan_id'] }}
+  name {{ id['name'] }}
+  vn-segment {{ id['l2vni']}}
 {% endfor %}
