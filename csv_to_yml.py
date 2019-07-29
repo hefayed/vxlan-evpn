@@ -16,11 +16,11 @@ with open(my_csv_file, mode='r') as csvfile:
 # for id in range(len(l2vni_data)):
 #     l2vni_data[id]['vlan_id'] = int(l2vni_data[id]['vlan_id'])
 
-
 with open(my_vars_file) as data:
     data_loaded = yaml.load(data, Loader=yamlloader.ordereddict.CLoader)
     for key in data_loaded:
         data_loaded['l2vni'] = data_loaded.get('l2vni', l2vni_data)
+    data_loaded['l2vni'] = l2vni_data
     yaml.dump(data_loaded, sys.stdout)
 
 with open(my_vars_file, "w") as file:
