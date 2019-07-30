@@ -1,0 +1,6 @@
+---
+#Task Creation of L2VNI on leafs
+- hosts: leafs
+  connection: local
+  roles:
+  - l2vni_overlay

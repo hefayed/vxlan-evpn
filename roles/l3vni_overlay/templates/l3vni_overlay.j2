@@ -1,0 +1,49 @@
+feature ospf
+feature bgp
+feature interface-vlan
+feature nv overlay
+feature vn-segment-vlan-based
+nv overlay evpn
+feature ngoam
+!
+fabric forwarding anycast-gateway-mac 0000.2222.3333
+!
+hostname {{ hostvars[inventory_hostname]['hostname'] }}
+!
+interface nve1
+  no shutdown
+  source-interface loopback1
+  host-reachability protocol bgp
+  member vni {{ vni.low }}-{{ vni.high }}
+    ingress-replication protocol bgp
+
+
+!
+interface loopback0
+  description Routing loopback interface
+  ip address {{ hostvars[inventory_hostname]['lo0_ipaddr'] }}/32
+  ip router ospf UNDERLAY area 0.0.0.0
+!
+interface loopback1
+  description VTEP loopback interface
+  ip address {{ hostvars[inventory_hostname]['lo1_ipaddr'] }}/32
+  ip router ospf UNDERLAY area 0.0.0.0
+
+router ospf UNDERLAY
+router-id {{ hostvars[inventory_hostname]['lo0_ipaddr'] }}
+router bgp {{ asn }}
+router-id {{ hostvars[inventory_hostname]['lo0_ipaddr'] }}
+log-neighbor-changes
+address-family ipv4 unicast
+template peer BasePolicy
+   remote-as {{ asn }}
+   update-source loopback0
+   address-family ipv4 unicast
+   address-family l2vpn evpn
+     send-community
+     send-community extended
+
+{% for neighbor in bgp_neighbors %}
+neighbor {{neighbor['neighbor']}}
+inherit peer BasePolicy
+{% endfor %}

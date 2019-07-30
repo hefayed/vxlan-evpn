@@ -1,0 +1,8 @@
+---
+# vars file for l3vni_overlay
+
+nxos_provider:
+  username: '{{ user }}'
+  password: '{{ pwd }}'
+  timeout: 100
+  host: '{{ hostvars[inventory_hostname].ansible_host }}'
