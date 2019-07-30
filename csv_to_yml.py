@@ -6,7 +6,7 @@ import yamlloader
 
 l2vni_data = []
 my_csv_file = '/home/contiv/vxlan-evpn/l2vni_vars.csv'
-my_vars_file = '/home/contiv/vxlan-evpn/roles/l2vni_overlay/vars/my_vars.yml'
+my_vars_file = '/home/contiv/vxlan-evpn/roles/l2vni_overlay/vars/main.yml'
 
 with open(my_csv_file, mode='r') as csvfile:
     reader = csv.DictReader(csvfile)

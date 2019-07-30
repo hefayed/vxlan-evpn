@@ -6,3 +6,14 @@ nxos_provider:
   host: '{{ hostvars[inventory_hostname].ansible_host }}'
 
 # vars for creation of l2vni and vlan interface configuration
+
+l2vni:
+- l2vni: '44120'
+  name: L2BD-120
+  vlan_id: '120'
+- l2vni: '44121'
+  name: L2BD-121
+  vlan_id: '121'
+- l2vni: '44122'
+  name: L2BD-122
+  vlan_id: '122'

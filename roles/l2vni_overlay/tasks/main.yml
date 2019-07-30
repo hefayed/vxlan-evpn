@@ -6,7 +6,7 @@
 
     - name: include vars from
       include_vars:
-        file: my_vars.yml
+        file: main.yml
 
     - name: Generate Leaf Config
       template: src=l2vni_overlay.j2 dest=roles/l2vni_overlay/files/{{inventory_hostname}}.cfg
