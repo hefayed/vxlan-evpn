@@ -1,0 +1,4 @@
+---
+#Task 1: Build the Underlay for all spines
+- hosts: leafs
+  connection: local
