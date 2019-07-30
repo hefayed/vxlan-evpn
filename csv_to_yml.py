@@ -6,7 +6,7 @@ import yamlloader
 
 l2vni_data = []
 my_csv_file = '/home/contiv/vxlan-evpn/l2vni_vars.csv'
-my_vars_file = '/home/contiv/vxlan-evpn/roles/l2vni_overlay/vars/main.yml'
+my_vars_file = '/home/contiv/vxlan-evpn/roles/l2vni_overlay/vars/my_vars.yml'
 
 with open(my_csv_file, mode='r') as csvfile:
     reader = csv.DictReader(csvfile)
@@ -18,9 +18,9 @@ with open(my_csv_file, mode='r') as csvfile:
 
 with open(my_vars_file) as data:
     data_loaded = yaml.load(data, Loader=yamlloader.ordereddict.CLoader)
-    for key in data_loaded:
-        data_loaded['l2vni'] = data_loaded.get('l2vni', l2vni_data)
-    data_loaded['l2vni'] = l2vni_data
+    # for key in data_loaded:
+    #     data_loaded['l2vni'] = data_loaded.get('l2vni', l2vni_data)
+    # # data_loaded['l2vni'] = l2vni_data
     yaml.dump(data_loaded, sys.stdout)
 
 with open(my_vars_file, "w") as file:
@@ -32,4 +32,4 @@ with open(my_vars_file, "w") as file:
 
 with open(my_vars_file, "a") as file:
     file.write('\n')
-    yaml.dump({'l2vni': data_loaded['l2vni']}, file, Dumper=yamlloader.ordereddict.CDumper)
+    yaml.dump({'l2vni': l2vni_data}, file, Dumper=yamlloader.ordereddict.CDumper)

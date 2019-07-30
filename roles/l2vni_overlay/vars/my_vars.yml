@@ -1,0 +1,31 @@
+---
+nxos_provider:
+  username: '{{ user }}'
+  password: '{{ pwd }}'
+  timeout: 100
+  host: '{{ hostvars[inventory_hostname].ansible_host }}'
+
+# vars for creation of l2vni and vlan interface configuration
+
+l2vni:
+- l2vni: '44101'
+  name: L2BD-101
+  vlan_id: '101'
+- l2vni: '44102'
+  name: L2BD-102
+  vlan_id: '102'
+- l2vni: '44103'
+  name: L2BD-103
+  vlan_id: '103'
+- l2vni: '44104'
+  name: L2BD-104
+  vlan_id: '104'
+- l2vni: '44105'
+  name: L2BD-105
+  vlan_id: '105'
+- l2vni: '44106'
+  name: L2BD-106
+  vlan_id: '106'
+- l2vni: '44107'
+  name: L2BD-107
+  vlan_id: '107'

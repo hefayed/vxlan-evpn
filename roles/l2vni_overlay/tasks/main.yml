@@ -4,6 +4,10 @@
     - name: parse csv and make vars file
       command: "python /home/contiv/vxlan-evpn/csv_to_yml.py"
 
+    - name: include vars from
+      include_vars:
+        file: my_vars.yml
+
     - name: Generate Leaf Config
       template: src=l2vni_overlay.j2 dest=roles/l2vni_overlay/files/{{inventory_hostname}}.cfg
 
