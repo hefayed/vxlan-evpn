@@ -1,0 +1,45 @@
+---
+nxos_provider:
+  username: '{{ user }}'
+  password: '{{ pwd }}'
+  timeout: 100
+  host: '{{ hostvars[inventory_hostname].ansible_host }}'
+
+# vars for creation of l2vni and vlan interface configuration
+
+l2vni:
+- ip_address: 192.168.123.254
+  l2vni: '44123'
+  l3vni: ' EVPN-L3-VNI-VLAN-999'
+  name: L2BD-123
+  vlan_id: '123'
+- ip_address: 192.168.124.254
+  l2vni: '44124'
+  l3vni: ' EVPN-L3-VNI-VLAN-999'
+  name: L2BD-124
+  vlan_id: '124'
+- ip_address: 192.168.125.254
+  l2vni: '44125'
+  l3vni: ' EVPN-L3-VNI-VLAN-999'
+  name: L2BD-125
+  vlan_id: '125'
+- ip_address: 192.168.126.254
+  l2vni: '44126'
+  l3vni: ' EVPN-L3-VNI-VLAN-999'
+  name: L2BD-126
+  vlan_id: '126'
+- ip_address: 192.168.127.254
+  l2vni: '44127'
+  l3vni: ' EVPN-L3-VNI-VLAN-999'
+  name: L2BD-127
+  vlan_id: '127'
+- ip_address: 192.168.128.254
+  l2vni: '44128'
+  l3vni: ' EVPN-L3-VNI-VLAN-999'
+  name: L2BD-128
+  vlan_id: '128'
+- ip_address: 192.168.129.254
+  l2vni: '44129'
+  l3vni: ' EVPN-L3-VNI-VLAN-999'
+  name: L2BD-129
+  vlan_id: '129'
