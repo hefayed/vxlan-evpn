@@ -6,3 +6,16 @@ nxos_provider:
   password: '{{ pwd }}'
   timeout: 100
   host: '{{ hostvars[inventory_hostname].ansible_host }}'
+
+# vars for creation of l3vni and vrf creation
+
+l3vni:
+  - l3vni: '44999'
+    name: L3-VNI-VLAN-999
+    vlan_id: '999'
+
+vrf:
+  - name: EVPN-L3-VNI-VLAN-999
+    l3vni: '44999'
+
+asn: 65000

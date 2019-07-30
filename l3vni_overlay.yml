@@ -3,4 +3,4 @@
 - hosts: leafs
   connection: local
   roles:
-  - l2vni_overlay
+  - l3vni_overlay

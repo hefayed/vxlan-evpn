@@ -1,2 +1,11 @@
 ---
 # tasks file for l3vni_overlay
+
+- name: Generate Leaf Config
+  template: src=l3vni_overlay.j2 dest=roles/l3vni_overlay/files/{{inventory_hostname}}.cfg
+
+- name: Push Leaf Config
+  nxos_config:
+    src: roles/l3vni_overlay/files/{{inventory_hostname}}.cfg
+    match: none
+    provider: "{{ nxos_provider }}"
