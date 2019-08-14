@@ -13,5 +13,5 @@
     - neighbor: 100.64.0.202
 
   vni:
-     low: 33100
-     high: 33200
+     low: 44100
+     high: 44110
