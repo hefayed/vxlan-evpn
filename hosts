@@ -15,10 +15,25 @@ pwd=C1sc0123!
 gather_fact=no
 
 [leafs]
-leaf103 ansible_host=10.2.6.147 lo0_ipaddr=100.64.0.103 lo1_ipaddr=100.64.1.103 hostname=leaf103
-leaf101 ansible_host=10.2.6.146 lo0_ipaddr=100.64.0.101 lo1_ipaddr=100.64.1.101 hostname=leaf101
-leaf102 ansible_host=10.2.6.145 lo0_ipaddr=100.64.0.102 lo1_ipaddr=100.64.1.102 hostname=leaf102
+Leaf101 ansible_host=10.2.28.101 lo0_ipaddr=100.64.0.101 lo1_ipaddr=100.64.1.101 hostname=Leaf101
+Leaf102 ansible_host=10.2.28.102 lo0_ipaddr=100.64.0.102 lo1_ipaddr=100.64.1.102 hostname=Leaf102
+Leaf105 ansible_host=10.2.28.105 lo0_ipaddr=100.64.0.105 lo1_ipaddr=100.64.1.105 hostname=Leaf105
+Leaf106 ansible_host=10.2.28.106 lo0_ipaddr=100.64.0.106 lo1_ipaddr=100.64.1.106 hostname=Leaf106
+
 
 [spines]
-spine201 ansible_host=10.2.6.144 lo0_ipaddr=100.64.0.201 lo1_ipaddr=100.64.1.201 hostname=spine201
-spine202 ansible_host=10.2.6.143 lo0_ipaddr=100.64.0.202 lo1_ipaddr=100.64.1.202 hostname=spine202
+Spine201 ansible_host=10.2.28.201 lo0_ipaddr=100.64.0.201 lo1_ipaddr=100.64.1.201 hostname=Spine201
+Spine202 ansible_host=10.2.28.202 lo0_ipaddr=100.64.0.202 lo1_ipaddr=100.64.1.202 hostname=Spine202
+Spine203 ansible_host=10.2.28.203 lo0_ipaddr=100.64.0.203 lo1_ipaddr=100.64.1.203 hostname=Spine203
+Spine204 ansible_host=10.2.28.204 lo0_ipaddr=100.64.0.204 lo1_ipaddr=100.64.1.204 hostname=Spine204
+
+
+[ISN]
+ISN-1 ansible_host=10.2.28.111 lo0_ipaddr=100.64.0.111 lo1_ipaddr=100.64.1.111 ISN1_To_ISN2=100.64.254.101 hostname=ISN-1
+ISN-2 ansible_host=10.2.28.122 lo0_ipaddr=100.64.0.122 lo1_ipaddr=100.64.1.122 ISN2_To_ISN1=100.64.254.102 hostname=ISN-2
+
+[BGW]
+BGW-1 ansible_host=10.2.28.103 lo0_ipaddr=100.64.0.103 lo1_ipaddr=100.64.1.103 lo2_ipaddr=100.64.2.103 lo100_ipaddr=100.64.100.103 site_id=1 BGW_To_ISN=100.64.254.13 ISN_To_BGW=100.64.254.14 hostname=BGW-1
+BGW-2 ansible_host=10.2.28.104 lo0_ipaddr=100.64.0.104 lo1_ipaddr=100.64.1.104 lo2_ipaddr=100.64.2.104 lo100_ipaddr=100.64.100.104 site_id=1 BGW_To_ISN=100.64.254.21 ISN_To_BGW=100.64.254.22 h2stname=BGW-2
+BGW-3 ansible_host=10.2.28.107 lo0_ipaddr=100.64.0.107 lo1_ipaddr=100.64.1.107 lo2_ipaddr=100.64.2.107 lo100_ipaddr=100.64.100.107 site_id=2 BGW_To_ISN=100.64.254.33 ISN_To_BGW=100.64.254.34 hostname=BGW-3
+BGW-4 ansible_host=10.2.28.108 lo0_ipaddr=100.64.0.108 lo1_ipaddr=100.64.1.108 lo2_ipaddr=100.64.2.108 lo100_ipaddr=100.64.100.104 site_id=2 BGW_To_ISN=100.64.254.41 ISN_To_BGW=100.64.254.42 hostname=BGW-4

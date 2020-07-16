@@ -1,0 +1,16 @@
+
+
+{% for id in l2vni %}
+vlan {{ id['vlan_id'] }}
+  name {{ id['name'] }}
+  vn-segment {{ id['l2vni']}}
+{% endfor %}
+
+
+{% for id in l2vni %}
+Interface vlan {{ id['vlan_id']}}
+No shutdown
+Vrf member{{ id['vrf']}}
+Ip address {{ id['ip_address']}}
+Fabric forwarding mode anycast-gateway
+{% endfor %}

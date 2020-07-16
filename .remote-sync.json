@@ -1,0 +1,19 @@
+{
+  "logger": {
+    "title": "Remote Sync"
+  },
+  "uploadOnSave": true,
+  "useAtomicWrites": false,
+  "deleteLocal": true,
+  "port": "22",
+  "target": "vxlan-evpn",
+  "ignore": [
+    ".remote-sync.json",
+    ".git/**"
+  ],
+  "username": "contiv",
+  "password": "C1sc0123!",
+  "watch": [],
+  "transport": "scp",
+  "hostname": "10.2.6.149"
+}

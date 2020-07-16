@@ -1,0 +1,2 @@
+vlan_id,name,ip_address,l2vni,vrf
+103,L2BD-103,192.168.103.254/24,44103, EVPN-L3-VNI-VLAN-1000

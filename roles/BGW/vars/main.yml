@@ -1,0 +1,13 @@
+---
+# vars file for leaf_underlay
+  nxos_provider:
+    username: "{{ user }}"
+    password: "{{ pwd }}"
+    timeout: 100
+    host: "{{ hostvars[inventory_hostname].ansible_host }}"
+
+  asn: 65001
+
+  bgp_neighbors:
+    - neighbor: 100.64.0.201
+    - neighbor: 100.64.0.202

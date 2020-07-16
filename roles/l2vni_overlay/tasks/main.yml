@@ -1,0 +1,18 @@
+---
+# tasks file for l2vni_overlay
+
+    - name: parse csv and make vars file
+      command: "python /home/contiv/vxlan-evpn/csv_to_yml.py"
+
+    - name: include vars from
+      include_vars:
+        file: main.yml
+
+    - name: Generate Leaf Config
+      template: src=l2vni_overlay.j2 dest=roles/l2vni_overlay/files/{{inventory_hostname}}.cfg
+
+    - name: Push Leaf Config
+      nxos_config:
+        src: roles/l2vni_overlay/files/{{inventory_hostname}}.cfg
+        match: none
+        provider: "{{ nxos_provider }}"

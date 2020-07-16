@@ -1,15 +1,17 @@
 ---
-# vars file for jinja2_leaf
+# vars file for leaf_underlay
   nxos_provider:
     username: "{{ user }}"
     password: "{{ pwd }}"
     timeout: 100
     host: "{{ hostvars[inventory_hostname].ansible_host }}"
 
-  asn: 65000
-
-  router_id: 100.64.0.100
+  asn: 65002
 
   bgp_neighbors:
-    - neighbor: 100.64.0.201
-    - neighbor: 100.64.0.202
+    - neighbor: 100.64.0.203
+    - neighbor: 100.64.0.204
+
+  vni:
+     low: 44100
+     high: 44110

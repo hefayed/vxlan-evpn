@@ -1,0 +1,31 @@
+
+
+{% for id in l3vni %}
+vlan {{ id['vlan_id'] }}
+  name {{ id['name'] }}
+  vn-segment {{ id['l3vni']}}
+!
+interface vlan {{ id['vlan_id'] }}
+  description {{ id['name']}}
+  vrf member {{ id['vrf']}}
+  ip forward
+  no shutdown
+{% endfor %}
+!
+
+{% for id in vrf %}
+vrf context {{ id['name']}}
+  vni {{ id['l3vni']}}
+  rd auto
+  address-family ipv4 unicast
+    route-target both auto
+    route-target both auto evpn
+!
+interface nve1
+  member vni {{ id['l3vni']}} associate-vrf
+!
+router bgp {{ asn }}
+vrf {{ id['name']}}
+  address-family ipv4 unicast
+  advertise l2vpn evpn
+{% endfor %}

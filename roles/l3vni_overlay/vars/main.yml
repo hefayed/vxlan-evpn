@@ -1,0 +1,22 @@
+---
+# vars file for l3vni_overlay
+
+nxos_provider:
+  username: '{{ user }}'
+  password: '{{ pwd }}'
+  timeout: 100
+  host: '{{ hostvars[inventory_hostname].ansible_host }}'
+
+# vars for creation of l3vni and vrf creation
+
+l3vni:
+  - l3vni: '441000'
+    name: L3-VNI-VLAN-1000
+    vlan_id: '1000'
+    vrf: EVPN-L3-VNI-VLAN-1000
+
+vrf:
+  - name: EVPN-L3-VNI-VLAN-1000
+    l3vni: '441000'
+
+asn: 65002

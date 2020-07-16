@@ -20,5 +20,5 @@
 
       - name: switch ports qty
         set_fact:
-          ports: "{{ module[0].ports }}"
-      - debug: var=ports
+          ports: "{{ vlan_list }}"
+      - debug: var=vlan_list
