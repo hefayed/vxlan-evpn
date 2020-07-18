@@ -47,6 +47,23 @@
   with_items: "{{ interfaces}}"
   when: ansible_net_neighbors[item][0]["sysname"] is search("Spine")
 
+- name: Configure uplink interfaces to ISN-2
+  nxos_config:
+    provider: "{{ nxos_provider }}"
+    lines:
+      - no switchport
+      - mtu 9216
+      - medium p2p
+      - ip address {{ hostvars[inventory_hostname]['BGW_To_ISN'] }}/30 tag 1001
+      - ip ospf network point-to-point
+      - ip router ospf EXTERNAL area 0.0.0.0
+      - no shutdown
+      - evpn multisite fabric-tracking
+    parents: interface {{ item }}
+    match: none
+  with_items: "{{ interfaces }}"
+  when: ansible_net_neighbors[item][0]["sysname"] is search("ISN-2")
+
 
 - name: Ensure an interface to ISN has the proper description
   nxos_interface:
@@ -54,4 +71,4 @@
     name: "{{ item }}"
     description: 'Connected-to-{{ ansible_net_neighbors[item][0]["port"] }}-{{ ansible_net_neighbors[item][0]["sysname"] }} '
   with_items: "{{ interfaces}}"
-  when: ansible_net_neighbors[item][0]["sysname"] is search("ISN")
+  when: ansible_net_neighbors[item][0]["sysname"] is search("ISN-2")

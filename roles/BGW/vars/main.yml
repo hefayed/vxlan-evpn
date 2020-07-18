@@ -29,6 +29,9 @@
       - neighbor: 100.64.0.108
 
   bgp_neighbors_site_3:
-    - neighbor_spine: 100.64.0.205
-    - neighbor_spine: 100.64.0.206
+    - BGW:
+      - neighbor: 100.64.0.103
+      - neighbor: 100.64.0.104
+      - neighbor: 100.64.0.107
+      - neighbor: 100.64.0.108
 

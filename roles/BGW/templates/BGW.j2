@@ -18,16 +18,6 @@ interface nve1
   source-interface loopback1
   host-reachability protocol bgp
   multisite border-gateway interface loopback100
-
-interface Ethernet1/3
-  no switchport
-  mtu 9216
-  medium p2p
-  no shutdown
-  ip address {{ hostvars[inventory_hostname]['BGW_To_ISN'] }}/30 tag 1001
-  ip ospf network point-to-point
-  ip router ospf EXTERNAL area 0.0.0.0
-  evpn multisite dci-tracking
 !
 interface loopback0
   description Routing loopback interface
@@ -77,13 +67,13 @@ redistribute direct route-map RMAP-REDIST-DIRECT
      send-community extended
 
 {% for neighbor in bgp_neighbors_site_1 %}
-neighbor {{neighbor['neighbor_spine']}}
+neighbor {{ neighbor['neighbor_spine'] }}
 inherit peer BasePolicy
 {% endfor %}
 
 {# Please add the below for loop based on how many sites you are planning to provision #}
 {% for neighbor in bgp_neighbors_site_2 %}
-neighbor {{neighbor['neighbor_bgw']}}
+neighbor {{ neighbor['neighbor_bgw'] }}
 remote-as {{ asn_site_2 }}
   update-source loopback0
   ebgp-multihop 5
@@ -95,7 +85,7 @@ remote-as {{ asn_site_2 }}
     rewrite-evpn-rt-asn
 {% endfor %}
 
-{% elif lookup('inventory_hostnames', hostvars[inventory_hostname]['hostname'] ) == 'BGW-3' or lookup('inventory_hostnames', hostvars[inventory_hostname]['hostname'] ) == 'BGW-4'%}
+{% elif lookup('inventory_hostnames', hostvars[inventory_hostname]['hostname'] ) == 'BGW-3' or lookup('inventory_hostnames', hostvars[inventory_hostname]['hostname'] ) == 'BGW-4' %}
 
 router bgp {{ asn_site_2 }}
   router-id {{ hostvars[inventory_hostname]['lo0_ipaddr'] }}
@@ -115,7 +105,7 @@ inherit peer BasePolicy
 {% endfor %}
 
 {% for neighbor in bgp_neighbors_site_1[0]['BGW'] %}
-neighbor {{neighbor['neighbor']}}
+neighbor {{ neighbor['neighbor'] }}
 remote-as {{ asn_site_1 }}
   update-source loopback0
   ebgp-multihop 5
@@ -140,8 +130,8 @@ router bgp {{ asn_site_3 }}
      send-community
      send-community extended
 
-{% for neighbor in bgp_neighbors_site_3 %}
-neighbor {{neighbor['neighbor_spine']}}
+{% for neighbor in bgp_neighbors_site_3[0]['spine'] %}
+neighbor {{ neighbor['neighbor'] }}
 inherit peer BasePolicy
 {% endfor %}
 
