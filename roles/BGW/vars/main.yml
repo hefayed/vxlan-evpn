@@ -8,12 +8,27 @@
 
   asn_site_1: 65001
   asn_site_2: 65002
+  asn_site_3: 65003
 
   bgp_neighbors_site_1:
-    - neighbor: 100.64.0.201
-    - neighbor: 100.64.0.202
+    - spine:
+      - neighbor: 100.64.0.201
+      - neighbor: 100.64.0.202
+    
+      BGW:
+      - neighbor: 100.64.0.103
+      - neighbor: 100.64.0.104
   
   bgp_neighbors_site_2:
-    - neighbor: 100.64.0.203
-    - neighbor: 100.64.0.204
+    - spine:
+      - neighbor: 100.64.0.203
+      - neighbor: 100.64.0.204
+      
+      BGW:
+      - neighbor: 100.64.0.107
+      - neighbor: 100.64.0.108
+
+  bgp_neighbors_site_3:
+    - neighbor_spine: 100.64.0.205
+    - neighbor_spine: 100.64.0.206
 
