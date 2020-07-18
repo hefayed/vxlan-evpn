@@ -34,6 +34,6 @@ ISN-2 ansible_host=10.2.28.122 lo0_ipaddr=100.64.0.122 lo1_ipaddr=100.64.1.122 I
 
 [BGW]
 BGW-1 ansible_host=10.2.28.103 lo0_ipaddr=100.64.0.103 lo1_ipaddr=100.64.1.103 lo2_ipaddr=100.64.2.103 lo100_ipaddr=100.64.100.103 site_id=1 BGW_To_ISN=100.64.254.13 ISN_To_BGW=100.64.254.14 hostname=BGW-1
-BGW-2 ansible_host=10.2.28.104 lo0_ipaddr=100.64.0.104 lo1_ipaddr=100.64.1.104 lo2_ipaddr=100.64.2.104 lo100_ipaddr=100.64.100.104 site_id=1 BGW_To_ISN=100.64.254.21 ISN_To_BGW=100.64.254.22 h2stname=BGW-2
+BGW-2 ansible_host=10.2.28.104 lo0_ipaddr=100.64.0.104 lo1_ipaddr=100.64.1.104 lo2_ipaddr=100.64.2.104 lo100_ipaddr=100.64.100.104 site_id=1 BGW_To_ISN=100.64.254.21 ISN_To_BGW=100.64.254.22 hostname=BGW-2
 BGW-3 ansible_host=10.2.28.107 lo0_ipaddr=100.64.0.107 lo1_ipaddr=100.64.1.107 lo2_ipaddr=100.64.2.107 lo100_ipaddr=100.64.100.107 site_id=2 BGW_To_ISN=100.64.254.33 ISN_To_BGW=100.64.254.34 hostname=BGW-3
 BGW-4 ansible_host=10.2.28.108 lo0_ipaddr=100.64.0.108 lo1_ipaddr=100.64.1.108 lo2_ipaddr=100.64.2.108 lo100_ipaddr=100.64.100.104 site_id=2 BGW_To_ISN=100.64.254.41 ISN_To_BGW=100.64.254.42 hostname=BGW-4

@@ -1,0 +1,79 @@
+feature ospf
+feature bgp
+feature interface-vlan
+feature nv overlay
+feature vn-segment-vlan-based
+nv overlay evpn
+feature ngoam
+!
+fabric forwarding anycast-gateway-mac 0000.2222.3333
+!
+hostname {{ hostvars[inventory_hostname]['hostname'] }}
+!
+evpn multisite border-gateway {{ hostvars[inventory_hostname]['site_id'] }}
+ delay-restore time 300
+!
+interface nve1
+  no shutdown
+  source-interface loopback1
+  host-reachability protocol bgp
+  multisite border-gateway interface loopback100
+
+interface Ethernet1/3
+  no switchport
+  mtu 9216
+  medium p2p
+  no shutdown
+  ip address {{ hostvars[inventory_hostname]['BGW_To_ISN'] }}/30 tag 1001
+  ip ospf network point-to-point
+  ip router ospf EXTERNAL area 0.0.0.0
+  evpn multisite dci-tracking
+!
+interface loopback0
+  description Routing loopback interface
+  ip address {{ hostvars[inventory_hostname]['lo0_ipaddr'] }}/32 tag 1001
+  ip router ospf UNDERLAY area 0.0.0.0
+!
+interface loopback1
+  description VTEP loopback interface
+  ip address {{ hostvars[inventory_hostname]['lo1_ipaddr'] }}/32 tag 1001
+  ip router ospf UNDERLAY area 0.0.0.0
+
+interface loopback2
+  description VTEP loopback interface
+  ip address {{ hostvars[inventory_hostname]['lo2_ipaddr'] }}/32 tag 1001
+  ip router ospf EXTERNAL area 0.0.0.0
+!
+interface loopback100
+  description MULTI-SITE INTERFACE (VIP VTEP)
+  ip address {{ hostvars[inventory_hostname]['lo100_ipaddr'] }}/32 tag 1001
+  ip router ospf UNDERLAY area 0.0.0.0
+
+
+
+route-map RMAP-REDIST-DIRECT permit 10
+ match tag 1001
+
+router ospf UNDERLAY
+router-id {{ hostvars[inventory_hostname]['lo0_ipaddr'] }}
+
+router ospf EXTERNAL
+router-id {{ hostvars[inventory_hostname]['lo2_ipaddr'] }}
+redistribute direct route-map RMAP-REDIST-DIRECT
+
+router bgp {{ asn_site_1 }}
+router-id {{ hostvars[inventory_hostname]['lo0_ipaddr'] }}
+log-neighbor-changes
+address-family ipv4 unicast
+template peer BasePolicy
+   remote-as {{ asn_site_1 }}
+   update-source loopback0
+   address-family ipv4 unicast
+   address-family l2vpn evpn
+     send-community
+     send-community extended
+
+{% for neighbor in bgp_neighbors_site_1 %}
+neighbor {{neighbor['neighbor']}}
+inherit peer BasePolicy
+{% endfor %}

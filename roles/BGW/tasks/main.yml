@@ -1,11 +1,12 @@
 ---
 # tasks to build leaf underlay
 - name: Generate Leaf Config
-  template: src=leaf_underlay.j2 dest=roles/leaf_underlay/files/{{inventory_hostname}}.cfg
+  template: src=BGW.j2 dest=roles/BGW/files/{{inventory_hostname}}.cfg
+
 
 - name: Push Leaf Config
   nxos_config:
-    src: roles/leaf_underlay/files/{{inventory_hostname}}.cfg
+    src: roles/BGW/files/{{inventory_hostname}}.cfg
     match: none
     provider: "{{ nxos_provider }}"
 

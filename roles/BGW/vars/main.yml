@@ -6,8 +6,14 @@
     timeout: 100
     host: "{{ hostvars[inventory_hostname].ansible_host }}"
 
-  asn: 65001
+  asn_site_1: 65001
+  asn_site_2: 65002
 
-  bgp_neighbors:
+  bgp_neighbors_site_1:
     - neighbor: 100.64.0.201
     - neighbor: 100.64.0.202
+  
+  bgp_neighbors_site_2:
+    - neighbor: 100.64.0.203
+    - neighbor: 100.64.0.204
+

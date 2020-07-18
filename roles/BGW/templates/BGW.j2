@@ -61,19 +61,42 @@ router ospf EXTERNAL
 router-id {{ hostvars[inventory_hostname]['lo2_ipaddr'] }}
 redistribute direct route-map RMAP-REDIST-DIRECT
 
-router bgp {{ asn }}
-router-id {{ hostvars[inventory_hostname]['lo0_ipaddr'] }}
-log-neighbor-changes
-address-family ipv4 unicast
-template peer BasePolicy
-   remote-as {{ asn }}
-   update-source loopback0
-   address-family ipv4 unicast
-   address-family l2vpn evpn
+{% if  lookup('inventory_hostnames', hostvars[inventory_hostname]['hostname'] ) == 'BGW-1' or lookup('inventory_hostnames', hostvars[inventory_hostname]['hostname'] ) == 'BGW-2' %}
+
+  router bgp {{ asn_site_1 }}
+  router-id {{ hostvars[inventory_hostname]['lo0_ipaddr'] }}
+  log-neighbor-changes
+  address-family ipv4 unicast
+  template peer BasePolicy
+    remote-as {{ asn_site_1 }}
+    update-source loopback0
+    address-family ipv4 unicast
+    address-family l2vpn evpn
      send-community
      send-community extended
 
-{% for neighbor in bgp_neighbors %}
+{% for neighbor in bgp_neighbors_site_1 %}
 neighbor {{neighbor['neighbor']}}
 inherit peer BasePolicy
 {% endfor %}
+
+{% else %}
+
+router bgp {{ asn_site_2 }}
+  router-id {{ hostvars[inventory_hostname]['lo0_ipaddr'] }}
+  log-neighbor-changes
+  address-family ipv4 unicast
+  template peer BasePolicy
+    remote-as {{ asn_site_2 }}
+    update-source loopback0
+    address-family ipv4 unicast
+    address-family l2vpn evpn
+     send-community
+     send-community extended
+
+{% for neighbor in bgp_neighbors_site_2 %}
+neighbor {{neighbor['neighbor']}}
+inherit peer BasePolicy
+{% endfor %}
+
+{% endif %}
