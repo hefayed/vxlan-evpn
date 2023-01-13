@@ -11,7 +11,7 @@
 [all:vars]
 ansible_connection=local
 user=admin
-pwd=C1sc0123!
+pwd=#########
 gather_fact=no
 
 [leafs]
